@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wetterbest Leads</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <style>
+        body { padding-top:50px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+    	<form method="post" action="" id="responseForm"
+       <h2>Va rugam sa ne comunicati motivul pentru care lead-ul nu a fost finalizat:</h2>
+       <hr>
+       <input class="form-control" type="text" name="fact" id="fact" placeholder="Motiv">
+       <hr>
+       <input class="btn btn-danger " type="submit" value="Trimite">
+    </div>
+
+</body>
+</html>
+<script>
+
+let initForm = ()=>{
+	let name = window.location.href;
+	let parameter = name.split("/").pop();
+
+	document.getElementById('responseForm').action = 'http://72c578e3.ngrok.io/leads/insert/status/fail/'+parameter;
+}
+
+
+	initForm();
+
+
+
+</script>

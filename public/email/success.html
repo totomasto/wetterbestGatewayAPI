@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wetterbest Leads</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <style>
+        body { padding-top:50px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+    	<form method="post" action="" id="responseForm"
+       <h2>Daca lead-ul a fost solutionat cu succes, va rugam completati campul de mai jos:</h2>
+       <hr>
+       <input class="form-control" type="text" name="fact" id="fact" placeholder="Numar factura proforma">
+       <hr>
+       <input class="btn btn-success " type="submit" value="Trimite">
+    </div>
+
+</body>
+</html>
+<script>
+
+let initForm = ()=>{
+	let name = window.location.href;
+	let parameter = name.split("/").pop();
+
+	document.getElementById('responseForm').action = 'http://72c578e3.ngrok.io/leads/insert/status/success/'+parameter;
+}
+
+
+	initForm();
+
+
+
+</script>

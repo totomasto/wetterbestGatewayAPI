@@ -1,0 +1,23 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Wetterbest Leads
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+    style.
+      body { padding-top:50px; }
+  body
+    .container
+      form#responseForm(method='post', action='')
+        h2 Daca lead-ul a fost solutionat cu succes, va rugam completati campul de mai jos:
+        hr
+        input#fact.form-control(type='text', name='fact', placeholder='Numar factura proforma')
+        hr
+        input.btn.btn-success(type='submit', value='Trimite')
+    script.
+      let initForm = ()=>{
+      let name = window.location.href;
+      let parameter = name.split("/").pop();
+      document.getElementById('responseForm').action = 'http://72c578e3.ngrok.io/leads/insert/status/success/'+parameter;
+      }
+      initForm();

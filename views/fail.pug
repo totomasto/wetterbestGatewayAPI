@@ -1,0 +1,23 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Wetterbest Leads
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+    style.
+      body { padding-top:50px; }
+  body
+    .container
+      form#responseForm(method='post', action='')
+        h2 Va rugam sa ne comunicati motivul pentru care lead-ul nu a fost finalizat:
+        hr
+        input#fact.form-control(type='text', name='fact', placeholder='Motiv')
+        hr
+        input.btn.btn-danger(type='submit', value='Trimite')
+    script.
+      let initForm = ()=>{
+      let name = window.location.href;
+      let parameter = name.split("/").pop();
+      document.getElementById('responseForm').action = 'http://72c578e3.ngrok.io/leads/insert/status/fail/'+parameter;
+      }
+      initForm();
