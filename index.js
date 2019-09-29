@@ -34,10 +34,9 @@ app.set('view engine', 'pug');
 
 app.get('/check', (req,res)=>{ insertLogsToSlack('Up and running');});
 
-app.get('/leads/select', (req, res)=>{
-
-	controller.getAllLeads((err, leads)=>{
-
+app.get('/leads/select/:email', (req, res)=>{
+	console.log('Req was received')
+	controller.getAllLeads(req.params.email,(err, leads)=>{
 		res.send(leads);
 
 	});
@@ -131,6 +130,35 @@ app.get('/leads/insert/status/wait/:name', (req,res)=>{
 
 //////////////////////////////////////////////////////////// WETTERBEST APP ////////////////////////////////////////////////////////////
 
+
+app.get('/wtb/lead/update/:name/:status/:reason', (req, res)=>{
+	console.log('Update req was received');
+if(req.params.status === 'Finalizat'){
+	console.log(req.params.name,req.params.status, req.params.reason);
+	controller.requestUpdateOfLead(req.params.name,req.body.fact, (err, result)=>{
+		if(err) res.sendStatus(404);
+		res.sendStatus(200);
+	}); 
+	
+} else if(req.params.status === 'Pierdut'){
+	console.log(req.params.name,req.params.status, req.params.reason);
+	
+
+	controller.requestUpdateOfLeadFailed(req.params.name,req.body.reason, (err, result)=>{
+		if(err) res.sendStatus(404);
+		res.sendStatus(200);
+	}); 
+} else if(req.params.status === 'In asteptare'){
+	console.log(req.params.name,req.params.status, req.params.reason);
+	controller.requestUpdateOfLeadWait(req.params.name, (err, result)=>{
+	if(err) res.sendStatus(404);
+		res.sendStatus(200);
+	});
+	
+}
+
+
+});
 
 app.post('/wtb/reseller/check', (req, res)=>{
 	controller.requestResellerCheck(req.body.cif,(err, result)=>{

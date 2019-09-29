@@ -77,10 +77,10 @@ let getLead = async (id, callback) => {
 }
 
 
-let getAllLeads = async (callback)=>{
+let getAllLeads = async (email, callback)=>{
 
-    let url = `http://192.168.1.69:8080/leads/select`;
-
+    let url = `http://localhost:8081/wtb/leads/select/${email}`;
+    console.log('Req has been made for '+ email);
      axios.get(url, {
         method : 'get'
     })
